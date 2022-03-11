@@ -1,4 +1,4 @@
-package edu.cascadia.mobas.campusguidebook.Application;
+package edu.cascadia.mobas.campusguidebook.application;
 
 import android.os.Build;
 

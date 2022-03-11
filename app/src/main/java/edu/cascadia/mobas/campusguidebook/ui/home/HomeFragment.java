@@ -18,9 +18,7 @@ import edu.cascadia.mobas.campusguidebook.databinding.HomeBinding;
 
 public class HomeFragment extends Fragment {
 
-    private HomeViewModel homeViewModel;
     private HomeBinding binding;
-
 
     // All UI behavior has moved from MainActivity to fragments
     // View initialization logic goes in onCreateView
@@ -36,11 +34,6 @@ public class HomeFragment extends Fragment {
     // Initialization logic beyond view initialization goes on onViewCreated
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        // Connect adapters
-            // no adapters present on home fragment
-
-        //Initialize ViewModel (and any other dependencies)
-        homeViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
 
         // Initialize properties of individual views, such as onClickListeners
         binding.cardViewHomeEvents.setOnClickListener(CardView -> {

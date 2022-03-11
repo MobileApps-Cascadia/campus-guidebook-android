@@ -1,15 +1,11 @@
-package edu.cascadia.mobas.campusguidebook.Application;
+package edu.cascadia.mobas.campusguidebook.ui.events;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
-import android.os.Build;
 import android.os.Bundle;
 
-import androidx.annotation.RequiresApi;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
@@ -26,9 +22,8 @@ import android.widget.Toast;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 
-import edu.cascadia.mobas.campusguidebook.DatePickerFragment;
+import edu.cascadia.mobas.campusguidebook.application.AppConfig;
 import edu.cascadia.mobas.campusguidebook.R;
-import edu.cascadia.mobas.campusguidebook.TimePickerFragment;
 import edu.cascadia.mobas.campusguidebook.data.typeconverter.ZonedDateTimeConverter;
 import edu.cascadia.mobas.campusguidebook.viewmodel.MainActivityViewModel;
 
@@ -40,7 +35,6 @@ public class AddEventFragment extends Fragment implements DatePickerDialog.OnDat
     private EditText mEditTextEventName;
     private EditText mEditTextEventDescription;
     private EditText mEditTextEventLocation;
-    private EditText mEditTextImageLink;
     private Button mBtnPickDateTime;
     private Button mAddNewEventBtn;
     private TextView mTextViewDateTime;
@@ -51,7 +45,6 @@ public class AddEventFragment extends Fragment implements DatePickerDialog.OnDat
     }
 
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,7 +67,6 @@ public class AddEventFragment extends Fragment implements DatePickerDialog.OnDat
         mBtnPickDateTime = root.findViewById(R.id.btnPickDateTime);
         mAddNewEventBtn = root.findViewById(R.id.addNewEventBtn);
         mTextViewDateTime = root.findViewById(R.id.textViewDateTime);
-        mEditTextImageLink = root.findViewById(R.id.editTextImageLink);
 
         // call listener on buttons
         mBtnPickDateTime.setOnClickListener(this);
@@ -84,8 +76,6 @@ public class AddEventFragment extends Fragment implements DatePickerDialog.OnDat
         return root;
     }
 
-
-    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void onClick (View v) {
         switch (v.getId()){
@@ -121,10 +111,9 @@ public class AddEventFragment extends Fragment implements DatePickerDialog.OnDat
         //passes the information
         return mViewModel.addNewEvent(mEditTextEventName.getText().toString(),
                 mEditTextEventDescription.getText().toString(),
-                mEditTextEventLocation.getText().toString(), mZonedDateTime, mEditTextImageLink.getText().toString());
+                mEditTextEventLocation.getText().toString(), mZonedDateTime);
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
 
@@ -141,7 +130,6 @@ public class AddEventFragment extends Fragment implements DatePickerDialog.OnDat
         dialogTimeFragment.show(getFragmentManager(), "time picker");
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
         //gets date that was chosen and sets the time

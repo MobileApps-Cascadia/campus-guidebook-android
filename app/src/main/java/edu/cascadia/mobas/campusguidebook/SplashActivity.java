@@ -9,8 +9,8 @@ import android.content.Intent;
 
 import java.util.concurrent.TimeUnit;
 
-import edu.cascadia.mobas.campusguidebook.Application.AppConfig;
-import edu.cascadia.mobas.campusguidebook.Application.AppInit;
+import edu.cascadia.mobas.campusguidebook.application.AppConfig;
+import edu.cascadia.mobas.campusguidebook.application.AppInit;
 
 @RequiresApi(api = Build.VERSION_CODES.O)
 public class SplashActivity extends AppCompatActivity {

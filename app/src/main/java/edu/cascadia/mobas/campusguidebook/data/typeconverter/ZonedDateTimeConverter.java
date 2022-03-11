@@ -8,7 +8,6 @@ import androidx.room.TypeConverter;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 
-@RequiresApi(api = Build.VERSION_CODES.O)
 public class ZonedDateTimeConverter {
 
     @TypeConverter

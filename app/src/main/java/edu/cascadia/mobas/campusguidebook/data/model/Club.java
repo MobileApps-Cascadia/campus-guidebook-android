@@ -1,115 +1,107 @@
 package edu.cascadia.mobas.campusguidebook.data.model;
 
-import android.os.Build;
-
 import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 import java.time.ZonedDateTime;
+import java.util.HashMap;
+import java.util.Map;
 
-import edu.cascadia.mobas.campusguidebook.Application.AppConfig;
+import edu.cascadia.mobas.campusguidebook.application.AppConfig;
 
-@RequiresApi(api = Build.VERSION_CODES.O)
+import edu.cascadia.mobas.campusguidebook.data.typeconverter.PropertyListTypeConverter;
+
+
 @Entity(tableName = "Club_Table")
-public class Club {
-    // below line is to auto increment
-    // id for each club.
-    @PrimaryKey(autoGenerate = true)
+public class Club implements IEntity{
 
-    // field for the club id.
-    private int id;
+    // returns the name of the class to allow generic fragments to utilize navigation
+    @Override @Ignore
+    public final String getEntityName() {
+        return this.getClass().getSimpleName();
+    }
+
+    @PrimaryKey
+    @ColumnInfo(name = "id")
+    private long id = 0;
 
     @NonNull
-    @ColumnInfo(name = "club_name")
-    private String clubName;
+    @ColumnInfo(name = "name")
+    private String name = "";
 
-    @ColumnInfo(name = "club_description")
-    private String clubDescription;
-
-    @ColumnInfo(name = "club_advisor")
-    private String clubAdvisor;
-
-    @ColumnInfo(name = "club_contact")
-    private String clubContact;
+    @ColumnInfo(name = "details")
+    private String details;
 
     @ColumnInfo(name = "image_uri")
     private String imageUri;
 
+    @ColumnInfo(name = "properties")
+    private Map<String, String> properties;
+
     @ColumnInfo(name = "last_updated")
     private ZonedDateTime lastUpdated;
 
+    @ColumnInfo(name = "upload_status")
+    private int uploadStatus; // TODO: change to enum using TypeConverter
+
     // Constructor
-    public Club(String clubName, String clubDescription, String clubAdvisor,
-                String clubContact, String imageUri, ZonedDateTime lastUpdated) {
-        this.clubName = clubName;
-        this.clubDescription = clubDescription;
-        this.clubAdvisor = clubAdvisor;
-        this.clubContact = clubContact;
+    public Club(long id, @NonNull String name, String details, String imageUri,
+                ZonedDateTime lastUpdated, Map<String, String> properties) {
+        this.id = id;
+        this.name = name;
+        this.details = details;
         this.imageUri = imageUri;
-        this.lastUpdated = (lastUpdated == null ?
-                ZonedDateTime.of(2022, 3, 1, 15, 30, 0, 0, AppConfig.TIMEZONE)
-                : lastUpdated);
+        this.lastUpdated = (lastUpdated == null ? ZonedDateTime.now(AppConfig.TIMEZONE) : lastUpdated);
+        this.properties = (properties == null ? new HashMap<String, String>() : properties);
+        this.uploadStatus = 0;
     }
 
-    // Convenience constructors for backwards compatibility
+    // Convenience constructor which takes a JSON string for properties
     @Ignore
-    public Club(String clubName, String clubDescription, String clubAdvisor, String clubContact) {
-        this(clubName, clubDescription, clubAdvisor, clubContact, null,null);
+    public Club(long id, @NonNull String name, String details, String imageUri,
+                ZonedDateTime lastUpdated, String jsonProperties) {
+        this(id, name, details, imageUri, lastUpdated, PropertyListTypeConverter.toMap(jsonProperties));
     }
 
-    @Ignore
-    public Club(String clubName, String clubDescription, String clubAdvisor, String clubContact, String imageUri) {
-        this(clubName, clubDescription, clubAdvisor, clubContact, imageUri,null);
-    }
 
     // getter and setter methods.
-    public int getId() {
+
+    public long getId() {
         return id;
     }
 
-    public void setId(int ID) {
-        this.id = ID;
+    public void setId(long id) {
+        this.id = id;
     }
 
-    public String getClubName() {
-        return clubName;
+    @NonNull
+    public String getName() {
+        return name;
     }
 
-    public void setClubName(String clubName) {
-        this.clubName = clubName;
+    public void setName(@NonNull String name) {
+        this.name = name;
     }
 
-    public String getClubDescription() {
-        return this.clubDescription;
+    public String getDetails() {
+        return this.details;
     }
 
-    public void setClubDescription(String description) {
-        this.clubDescription = description;
-    }
-
-    public String getClubAdvisor() {
-        return this.clubAdvisor;
-    }
-
-    public void setClubAdvisor(String advisor) {
-        this.clubAdvisor = advisor;
-    }
-
-    public String getClubContact() {
-        return this.clubContact;
-    }
-
-    public void setClubContact(String contact) {
-        this.clubContact = contact;
+    public void setDetails(String description) {
+        this.details = description;
     }
 
     public String getImageUri() {
         return this.imageUri;
     }
+
+    @Override
+    public Map<String, String> getProperties() { return this.properties; }
+
+    public void setProperties(Map<String, String> properties) { this.properties = properties; }
 
     public void setImageUri(String uri) {
         this.imageUri = uri;
@@ -119,9 +111,16 @@ public class Club {
         return this.lastUpdated;
     }
 
+    @Override
+    public int getUploadStatus() {
+        return 0;
+    }
+
     public void setLastUpdated(ZonedDateTime updatedOn) {
         this.lastUpdated = updatedOn;
     }
 
+    public void setUploadStatus(int uploadStatus) {
+        this.uploadStatus = uploadStatus;
+    }
 }
-

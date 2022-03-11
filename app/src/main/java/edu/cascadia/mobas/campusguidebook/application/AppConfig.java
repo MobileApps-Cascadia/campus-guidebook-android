@@ -1,6 +1,5 @@
-package edu.cascadia.mobas.campusguidebook.Application;
+package edu.cascadia.mobas.campusguidebook.application;
 
-import android.graphics.drawable.Drawable;
 import android.os.Build;
 
 import androidx.annotation.RequiresApi;

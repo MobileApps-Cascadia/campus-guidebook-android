@@ -4,7 +4,7 @@ import android.app.Application;
 import android.os.Build;
 import androidx.annotation.RequiresApi;
 
-import edu.cascadia.mobas.campusguidebook.Application.AppExecutors;
+import edu.cascadia.mobas.campusguidebook.application.AppExecutors;
 import edu.cascadia.mobas.campusguidebook.data.database.AppDatabase;
 import edu.cascadia.mobas.campusguidebook.data.repository.AppRepository;
 import edu.cascadia.mobas.campusguidebook.data.repository.ImageRepository;

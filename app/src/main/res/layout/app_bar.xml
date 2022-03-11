@@ -20,6 +20,6 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <include layout="@layout/fragment_nav_host" />
+    <include layout="@layout/nav_host" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

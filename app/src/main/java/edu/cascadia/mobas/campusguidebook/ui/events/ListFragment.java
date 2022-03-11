@@ -38,7 +38,6 @@ public class ListFragment extends Fragment {
     private LiveData<List<UIItem>> mEventList = null;
     private EventListBinding mBinding;
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,7 +45,6 @@ public class ListFragment extends Fragment {
         mEventList = mViewModel.getAllEvents();
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

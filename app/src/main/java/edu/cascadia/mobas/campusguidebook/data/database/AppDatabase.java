@@ -12,12 +12,12 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
-import edu.cascadia.mobas.campusguidebook.Application.AppConfig;
+import edu.cascadia.mobas.campusguidebook.application.AppConfig;
 import edu.cascadia.mobas.campusguidebook.data.SampleData;
 import edu.cascadia.mobas.campusguidebook.data.dao.*;
 import edu.cascadia.mobas.campusguidebook.data.model.*;
 import edu.cascadia.mobas.campusguidebook.data.typeconverter.*;
-import edu.cascadia.mobas.campusguidebook.Application.AppExecutors;
+import edu.cascadia.mobas.campusguidebook.application.AppExecutors;
 
 
 
@@ -27,7 +27,7 @@ import edu.cascadia.mobas.campusguidebook.Application.AppExecutors;
         Club.class,
         Sustainability.class,
         User.class}, version = 1)
-@TypeConverters(ZonedDateTimeConverter.class)
+@TypeConverters({ZonedDateTimeConverter.class, PropertyListTypeConverter.class})
 @RequiresApi(api = Build.VERSION_CODES.O)
 public abstract class AppDatabase extends RoomDatabase {
 

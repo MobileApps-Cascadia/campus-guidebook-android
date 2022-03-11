@@ -22,8 +22,8 @@ import java.net.URL;
 import java.util.Map;
 import java.util.TreeMap;
 
-import edu.cascadia.mobas.campusguidebook.Application.AppConfig;
-import edu.cascadia.mobas.campusguidebook.Application.AppExecutors;
+import edu.cascadia.mobas.campusguidebook.application.AppConfig;
+import edu.cascadia.mobas.campusguidebook.application.AppExecutors;
 import edu.cascadia.mobas.campusguidebook.CampusGuidebookApp;
 import edu.cascadia.mobas.campusguidebook.data.database.AppDatabase;
 
@@ -71,6 +71,12 @@ public class ImageRepository {
                 sImageRepository = new ImageRepository(context);
             }
         }
+        return sImageRepository;
+    }
+
+    // returns the singleton instance only if it already exists
+    @Nullable
+    public static ImageRepository getInstance() {
         return sImageRepository;
     }
 

@@ -31,12 +31,12 @@ public interface ClubDao {
     void delete(Club club);
 
     @Query("SELECT * FROM Club_Table")
-    LiveData<List<Club>> getAllClubs();
+    LiveData<List<Club>> getAll();
 
-    @Query("SELECT * FROM Club_Table WHERE id=:clubID")
-    LiveData<Club> getClubById(int clubID);
+    @Query("SELECT * FROM Club_Table WHERE id=:id")
+    LiveData<Club> getById(long id);
 
     @Query("SELECT COUNT(*) FROM Club_Table")
-    int getClubCount();
+    int getCount();
 
 }

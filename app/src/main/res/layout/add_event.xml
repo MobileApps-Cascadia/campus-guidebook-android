@@ -5,7 +5,7 @@
     android:id="@+id/frameLayout2"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Application.AddEventFragment">
+    tools:context=".ui.events.AddEventFragment">
 
     <!-- TODO: Update blank fragment layout -->
 

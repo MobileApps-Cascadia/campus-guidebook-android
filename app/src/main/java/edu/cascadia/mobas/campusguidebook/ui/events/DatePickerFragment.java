@@ -1,4 +1,4 @@
-package edu.cascadia.mobas.campusguidebook;
+package edu.cascadia.mobas.campusguidebook.ui.events;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;

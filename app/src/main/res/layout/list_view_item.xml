@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context=".ui.clubs.ListFragment" >
+    tools:context=".ui.BaseListFragment" >
 
 <com.google.android.material.card.MaterialCardView
-    android:id="@+id/cardView_club_list"
+    android:id="@+id/cardview_list_item"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="20dp"
@@ -26,7 +26,7 @@
         <!-- Media -->
 
         <ImageView
-            android:id="@+id/imageView_club_banner"
+            android:id="@+id/imageview_list_item_image"
             android:layout_width="match_parent"
             android:layout_height="194dp"
             android:contentDescription="@string/image_club_banner"
@@ -41,7 +41,7 @@
             android:padding="12dp">
 
             <TextView
-                android:id="@+id/textView_club_title"
+                android:id="@+id/textView_list_item_text"
                 android:layout_width="350dp"
                 android:layout_height="26dp"
                 android:text="CLUB FOR STUDENTS OF CASCADIA"

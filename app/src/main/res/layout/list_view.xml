@@ -5,14 +5,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.clubs.ListFragment" >
+    tools:context=".ui.BaseListFragment" >
 
     <LinearLayout
             xmlns:tools="http://schemas.android.com/tools"
             android:layout_width="match_parent"
             android:layout_height="match_parent" >
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/club_list_recycler"
+            android:id="@+id/list_recycler"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </LinearLayout>
