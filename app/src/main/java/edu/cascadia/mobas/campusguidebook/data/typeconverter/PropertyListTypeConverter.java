@@ -16,12 +16,12 @@ public class PropertyListTypeConverter {
 
     @TypeConverter
     public static String toJson(@Nullable Map<String, String> properties) {
-        return sGson.toJson(properties);
+        return sGson.toJson(properties, LinkedHashMap.class);
     }
 
     @TypeConverter
     public static Map<String, String> toMap(@Nullable String json) {
-        if (json == null) {
+        if (json == null || json == "") {
             return new LinkedHashMap<String, String>();
         } else {
             return jsonStrToMap(json);

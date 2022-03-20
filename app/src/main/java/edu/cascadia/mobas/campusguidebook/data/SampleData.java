@@ -21,50 +21,38 @@ public class SampleData {
                     102,
                     "Events and Advocacy Board",
                     "Roll the dice at EAB and CEB's annual Casino Night!",
+                    "ARC Overlook",
+                    ZonedDateTime.parse("2022-11-20T11:00:00-08:00[America/Los_Angeles]"),
                     "https://padlet-uploads.storage.googleapis.com/621406566/f8a534f5b3cd80d89c87fcf7b2bc9392/Casino_Night_Final__11x17in_.png",
-                    "{\"Date/Time\": \"2022-12-01T11:00:00-8:00[America/Los_Angeles]\",\"Location\": \"ARC Overlook\"}"
+                    "{}"
             ),
             new Event(
                     106,
                     "Engineering Club - Symposium",
                     "The biggest Engineering event of the year",
+                    "ARC Main Room",
+                    ZonedDateTime.parse("2022-11-26T11:00:00-08:00:00[America/Los_Angeles]"),
                     "https://www.cascadia.edu/images_calendar/collegerelations/CCEngineersClub.png",
-                    "{\"Date/Time\": \"2022-12-02T09:00:00-8:00[America/Los_Angeles]\",\"Location\": \"ARC Main\"}"
+                    "{\"Contact\": \"engineering@symposia.net\"}"
             ),
             new Event(
                     112,
                     "Math Club - Weekly Meeting",
                     "Meets every other Tuesday at 3:30",
+                    "CC2-220",
+                    ZonedDateTime.parse("2022-11-30T15:30:00-08:00[America/Los_Angeles]"),
                     "engineers_mindset",
-                    "{\"Date/Time\": \"2022-12-02T03:30:00-8:00[America/Los_Angeles]\",\"Location\": \"CC2-220\"}"
+                    "{}"
             ),
             new Event(
                     114,
                     "Science Club - Weekly Meeting",
                     "Meets every other Tuesday at 3:30",
-                    null,
-                    "{\"Date/Time\": \"2022-12-04T03:30:00-8:00[America/Los_Angeles]\",\"Location\": \"CC2-220\"}"
-            ),
-            new Event(
-                    117,
-                    "Art Club - Symposium",
-                    "The biggest Art event of the year",
-                    null,
-                    "{\"Date/Time\": \"2022-12-05T10:00:00-8:00[America/Los_Angeles]\",\"Location\": \"CC2-220\"}"
-            ),
-            new Event(119,
-                    "Programming Club - Weekly Meeting",
-                    "Meets every other Tuesday at 3:30",
-                    null,
-                    "{\"Date/Time\": \"2022-12-06T10:00:00-8:00[America/Los_Angeles]\",\"Location\": \"CC2-220\"}"
-            ),
-            new Event(
-                    120,
-                    "Robotics Club - Symposium",
-                    "The biggest Robotics event of the year",
+                    "CC2-220",
+                    ZonedDateTime.parse("2022-12-02T03:30:00-08:00[America/Los_Angeles]"),
                     "engineers_mindset",
-                    "{\"Date/Time\": \"2022-12-07T14:00:00-8:00[America/Los_Angeles]\",\"Location\": \"CC2-220\"}"
-            )
+                    "{}"
+            ),
     };
 
     public static final Club[] clubs = {

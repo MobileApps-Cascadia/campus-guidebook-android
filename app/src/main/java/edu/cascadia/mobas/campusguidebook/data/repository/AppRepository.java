@@ -68,17 +68,19 @@ public class AppRepository {
         return mAppDatabase.SustainabilityDao().getAllSustainability();
     }
 
-    public boolean addNewEvent(String eventName, String eventDescription, String eventLocation, ZonedDateTime eventDateTime, String imageUri) {
+    public boolean addNewEvent(String eventName, String eventDescription, String eventLocation,
+                               ZonedDateTime eventDateTime, String imageUri) {
         Map<String,String> properties = new LinkedHashMap<>();
-        properties.put("Date/Time", ZonedDateTimeConverter.fromZonedDateTime(eventDateTime));
-        properties.put("Location", eventLocation);
         Event event = new Event(
                 new Random().nextLong(),
-                eventName, eventDescription,
+                eventName,
+                eventDescription,
+                eventLocation,
+                eventDateTime,
                 imageUri,
-                properties,
+                new LinkedHashMap<String,String>(),
                 ZonedDateTime.now(AppConfig.TIMEZONE),
-                0
+                1
         );
 
         try {
@@ -190,3 +192,4 @@ public class AppRepository {
         }));
     }
 }
+

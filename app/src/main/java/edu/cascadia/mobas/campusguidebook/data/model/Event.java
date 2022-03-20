@@ -1,4 +1,5 @@
 package edu.cascadia.mobas.campusguidebook.data.model;
+import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.Ignore;
@@ -23,12 +24,18 @@ public class Event implements IEntity {
     @PrimaryKey(autoGenerate = true)
     private long id;
 
+    @NonNull
     @ColumnInfo(name = "name")
     private String name;
 
     @ColumnInfo(name = "description")
     private String description;
 
+    @NonNull
+    @ColumnInfo(name = "date_time")
+    private ZonedDateTime dateTime;
+
+    @NonNull
     @ColumnInfo(name = "location")
     private String location;
 
@@ -44,10 +51,14 @@ public class Event implements IEntity {
     @ColumnInfo(name = "upload_status")
     private int uploadStatus;
 
-    public Event(long id, String name, String description, String imageUri, Map<String,String> properties, ZonedDateTime lastUpdated, int uploadStatus) {
+    public Event(long id, String name, String description, String location, ZonedDateTime dateTime,
+                 String imageUri, Map<String,String> properties, ZonedDateTime lastUpdated,
+                 int uploadStatus) {
         this.id = id;
         this.name = name;
         this.description = description;
+        this.dateTime = dateTime;
+        this.location = location;
         this.imageUri = imageUri;
         this.properties = properties;
         this.lastUpdated = lastUpdated;
@@ -55,8 +66,10 @@ public class Event implements IEntity {
     }
 
     @Ignore
-    public Event(long id, String name, String description, String imageUri, String properties) {
-        this(id, name, description, imageUri, PropertyListTypeConverter.jsonStrToMap(properties),
+    public Event(long id, String name, String description, String location, ZonedDateTime dateTime,
+                 String imageUri, String properties) {
+        this(id, name, description, location, dateTime, imageUri,
+                PropertyListTypeConverter.jsonStrToMap(properties),
                 ZonedDateTime.now(AppConfig.TIMEZONE), 0);
     }
 
@@ -76,9 +89,6 @@ public class Event implements IEntity {
     @Override public ZonedDateTime getLastUpdated() { return this.lastUpdated; }
     @Override public int getUploadStatus() { return 0; }
     public String getLocation() { return this.location; }
-    public ZonedDateTime getDateTime(){ return ZonedDateTimeConverter.toZonedDateTime(
-            this.properties.getOrDefault(
-                    "Date/Time",
-                    ZonedDateTimeConverter.fromZonedDateTime(ZonedDateTime.now(AppConfig.TIMEZONE))));
-    }
+    public ZonedDateTime getDateTime(){ return this.dateTime; }
 }
+
