@@ -10,6 +10,7 @@ import edu.cascadia.mobas.campusguidebook.application.AppExecutors;
 import edu.cascadia.mobas.campusguidebook.data.database.AppDatabase;
 import edu.cascadia.mobas.campusguidebook.data.model.Club;
 import edu.cascadia.mobas.campusguidebook.data.model.Event;
+import edu.cascadia.mobas.campusguidebook.data.model.Location;
 import edu.cascadia.mobas.campusguidebook.data.model.Sustainability;
 import edu.cascadia.mobas.campusguidebook.data.model.User;
 
@@ -101,7 +102,26 @@ public class SampleData {
 
             )
     };
+    public static final Location[] location = {
+            new Location(0, "Parking 1", null, null, null, "Parking Exit SE", null, null, null, "Parking 1 Exit NW", null, null, null ),
+            new Location(1, "Parking 1 Exit NW", null, null, null, "Parking 1", null, "Parking 1 NW crosswalk", null, null, null, null, null ),
+            new Location(2, "Parking 1 NW crosswalk", null, "Parking 1 Exit NW", null, "15 Min Parking 1", null, null, null, "Bus stop 1", null, null, null ),
+            new Location(3, "Bus stop 1", null, null, "Parking 1 NW crosswalk", null, null, null, null, null, null, null, null ),
+            new Location(4, "15 Min Parking 1", "Parking 1 NW crosswalk", null, null, "Parking 1 S crosswalk", null, null, null, null, null, null, null ),
+            new Location(5, "Parking Exit SE", null, null, null, null, null, "Parking 1 S crosswalk", null, "Parking 1", null, null, null ),
+            new Location(6, "Parking 1 S crosswalk", null, "Parking Exit SE", null, null, "CC01 Entry LL", null, null, "15 Min Parking 1", null, null, null ),
+            new Location(7, "CC01 Entry LL", "Parking 1 S crosswalk", null, null, null, null, null, null, null, 0, "CC01 F1", null ),
+            new Location(8, "CC01 F1", null, null, null, null, null, null, null, null, 1, "CC01 F2", "CC01 F1" ),
+            new Location(9, "CC01 F2", null, null, null, null, "CC01-202 A", null, null, null, 2, "CC01 F3", "CC01 F1" ),
+            new Location(10, "CC01-202 A", null, null, null, null, "CC01-202", null, null, null, null, null, null ),
+            new Location(11, "CC01-202", "CC01-202 A", null, null, null, "CC01-210 N", null, null, null, null, null, null ),
+            new Location(12, "CC01-210 S", "CC01-210 N", null, null, null, "CC01-220", null, null, null, null, null, null ),
+            new Location(13, "CC01-210 N", "CC01-202", null, null, null, "CC01-210 S", null, null, null, null, null, null ),
+            new Location(14, "CC01-220", "CC01-210 S", null, null, null, "CC01-230 N", null, null, null, null, null, null ),
+            new Location(15, "CC01-230 S", "CC01-230 N", null, null, null, null, null, null, null, null, null, null ),
+            new Location(16, "CC01-230 N", "CC01-220", null, null, null, "CC01-230 S", null, null, null, null, null, null ),
 
+    };
     public static final Sustainability[] sustainabilities = {
             new Sustainability(1L,"Wetlands", "We protect and continue to restore a 58-acre wetland that is one of the biggest floodplain restoration projects completed in the Pacific Northwest in conjunction with UW Bothell. Cascadia classes use the wetland as a living laboratory to study water quality, botany, ecology and wildlife biology. Cascadia students have done wetland stormwater sampling!","sustainability_wetlands", null),
             new Sustainability(2L,"Green Buildings", "Our Global Learning and the Arts building (CC3) achieved Leadership in Energy and Environmental Design (LEED) Platinum  standard for environmental sustainability and we produce clean, renewable energy via solar panels located on our parking garages and rooftops.","green_buildings", null),
@@ -130,6 +150,8 @@ public class SampleData {
                 }
                 for (User user : SampleData.users)
                     appDatabase.UserDao().insert(user);
+                for (Location location : SampleData.location)
+                    appDatabase.LocationDao().insert(location);
                 Log.d("AppDatabase", "Adding sample data FINISHED");
             });
         });

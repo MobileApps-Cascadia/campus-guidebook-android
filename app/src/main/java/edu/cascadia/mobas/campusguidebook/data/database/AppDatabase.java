@@ -26,7 +26,8 @@ import edu.cascadia.mobas.campusguidebook.application.AppExecutors;
         Event.class,
         Club.class,
         Sustainability.class,
-        User.class}, version = 1)
+        User.class,
+        Location.class}, version = 1)
 @TypeConverters({ZonedDateTimeConverter.class, PropertyListTypeConverter.class})
 @RequiresApi(api = Build.VERSION_CODES.O)
 public abstract class AppDatabase extends RoomDatabase {
@@ -44,6 +45,8 @@ public abstract class AppDatabase extends RoomDatabase {
     public abstract ClubDao ClubDao();
     public abstract SustainabilityDao SustainabilityDao();
     public abstract UserDao UserDao();
+
+    public abstract LocationDao LocationDao();
 
     // on below line we are getting instance for our database.
     public static AppDatabase getInstance(final Application application, final AppExecutors appExecutors) {
@@ -77,5 +80,6 @@ public abstract class AppDatabase extends RoomDatabase {
         }
         return sAppDatabase;
     } // End of getInstance
+
 
 }

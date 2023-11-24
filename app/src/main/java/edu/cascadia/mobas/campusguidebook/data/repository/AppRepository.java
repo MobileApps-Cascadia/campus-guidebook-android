@@ -63,6 +63,10 @@ public class AppRepository {
         return mAppDatabase.ClubDao().getAll();
     }
 
+    public LiveData<List<Location>> getAllLocations() {
+        return mAppDatabase.LocationDao().getAll();
+    }
+
     // returns a list of all sustainability
     public LiveData<List<Sustainability>> getAllSustainability() {
         return mAppDatabase.SustainabilityDao().getAllSustainability();
@@ -186,6 +190,35 @@ public class AppRepository {
         mAppExecutors.diskIO().execute( () -> mAppDatabase.runInTransaction( () -> {
             for (User user : users) {
                 mAppDatabase.UserDao().delete(user);
+            }
+        }));
+    }
+
+
+
+
+
+
+    public void insert(Location... locations) {
+        mAppExecutors.diskIO().execute( () -> mAppDatabase.runInTransaction( () -> {
+            for (Location location : locations) {
+                mAppDatabase.LocationDao().insert(location);
+            }
+        }));
+    }
+
+    public void update(Location... locations) {
+        mAppExecutors.diskIO().execute( () -> mAppDatabase.runInTransaction( () -> {
+            for (Location location : locations) {
+                mAppDatabase.LocationDao().update(location);
+            }
+        }));
+    }
+
+    public void delete(Location... locations) {
+        mAppExecutors.diskIO().execute( () -> mAppDatabase.runInTransaction( () -> {
+            for (Location location : locations) {
+                mAppDatabase.LocationDao().delete(location);
             }
         }));
     }
