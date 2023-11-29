@@ -13,8 +13,14 @@ import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.LiveData;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import edu.cascadia.mobas.campusguidebook.R;
 import edu.cascadia.mobas.campusguidebook.data.model.IEntity;
@@ -71,6 +77,11 @@ public class BaseListAdapter<T extends IEntity> extends RecyclerView.Adapter<Bas
         // Get the data for a particular row within the list; return if null
         T item = mList.get(position);
         viewHolder.textView.setText(item.getName());
+        Map<String, String> Properties = item.getProperties();
+
+
+        viewHolder.locationText.setText(Properties.get("Location"));
+        viewHolder.timeText.setText(dateTimeParse(Properties.get("Date/Time")));
 
         // get the drawable image as livedata and add an observer
         String imageUri = item.getImageUri();
@@ -96,6 +107,8 @@ public class BaseListAdapter<T extends IEntity> extends RecyclerView.Adapter<Bas
         public final CardView cardView;
         public final ImageView imageView;
         public final TextView textView;
+        public final TextView locationText;
+        public final TextView timeText;
 
         // The constructor takes a parent view (a layout defined in xml) on the list item fragment
         // and allows us to get references to the views it contains
@@ -105,6 +118,37 @@ public class BaseListAdapter<T extends IEntity> extends RecyclerView.Adapter<Bas
             cardView = parentView.findViewById(R.id.cardview_list_item);
             imageView = parentView.findViewById(R.id.imageview_list_item_image);
             textView = parentView.findViewById(R.id.textView_list_item_text);
+            locationText = parentView.findViewById(R.id.list_view_location_text);
+            timeText = parentView.findViewById(R.id.list_view_time_text);
         }
     }  // End of static ViewHolder class
+    public String dateTimeParse(String DateTime){
+        // Define the regex pattern
+        Pattern pattern = Pattern.compile("(\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2})");
+
+        // Match the pattern against the input date
+        Matcher matcher = pattern.matcher(DateTime);
+
+        // Check if the pattern is found
+        if (matcher.find()) {
+            // Extract date and time components
+            String datePart = matcher.group(1);
+
+
+            // Format the date and time
+            String formattedDate = formatDate(datePart) + " " + formatTime(datePart);
+
+            return formattedDate;
+        } else {
+            return "Invalid date format";
+        }
+    }
+    private String formatDate(String datePart) {
+        // Format the date as MM/dd/yy
+        return datePart.substring(5, 7) + "/" + datePart.substring(8, 10) + "/" + datePart.substring(2, 4);
+    }
+    private String formatTime(String datePart) {
+        // Format the time as HH:mm
+        return datePart.substring(11, 16);
+    }
 }
