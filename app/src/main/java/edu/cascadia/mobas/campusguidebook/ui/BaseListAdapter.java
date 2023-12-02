@@ -81,14 +81,14 @@ public class BaseListAdapter<T extends IEntity> extends RecyclerView.Adapter<Bas
 
         // Get the data for a particular row within the list; return if null
         T item = mList.get(position);
-        //viewHolder.textView.setText(item.getName());
+        viewHolder.textView.setText(item.getName());
 
         Map<String, String> Properties = item.getProperties();
 
 
         viewHolder.locationText.setText(Properties.get("Location"));
         viewHolder.timeText.setText(dateTimeParse(Properties.get("Date/Time")));
-        viewHolder.textView.setText(Properties.get("Location"));
+        //viewHolder.textView.setText(Properties.get("Location"));
         Log.d(TAG, "This is a debug message" + Properties.get("Location"));
         // get the drawable image as livedata and add an observer
         String imageUri = item.getImageUri();

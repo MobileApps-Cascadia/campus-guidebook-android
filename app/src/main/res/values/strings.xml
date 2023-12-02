@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Campus Guidebook</string>
+    <string name="app_name" translatable="false">Campus Guidebook</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Campus Guidebook</string>
@@ -37,5 +37,6 @@
     <string name="colon_space"><![CDATA[: >]]></string>
     <string name="click_to_take_action_on_this_item">Click to take action on this item</string>
     <string name="a_logo_or_photograph">A logo or photograph</string>
+    <string name="club_list_desc">Student Life offers events, programs and services which encourage student involvement in the campus community and enhance the educational aspects of Cascadia. Student Life is also the point of contact for student clubs and organizations.</string>
 
 </resources>
