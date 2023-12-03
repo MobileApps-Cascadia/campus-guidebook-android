@@ -7,9 +7,9 @@ import java.util.List;
 
 import edu.cascadia.mobas.campusguidebook.R;
 import edu.cascadia.mobas.campusguidebook.data.model.Club;
-import edu.cascadia.mobas.campusguidebook.ui.BaseListFragment;
+import edu.cascadia.mobas.campusguidebook.ui.events.EventsListFragment;
 
-public class ClubListFragment extends BaseListFragment<Club> {
+public class ClubListFragment extends EventsListFragment<Club> {
 
     @Override
     public LiveData<List<Club>> getList() {
@@ -17,7 +17,7 @@ public class ClubListFragment extends BaseListFragment<Club> {
     }
 
     @Override
-    protected void itemClicked(Club item) {
+    public void itemClicked(Club item) {
         getViewModel().setDetailsItem(item);
         Navigation.findNavController(getRootView()).navigate(R.id.nav_club_details);
     }
