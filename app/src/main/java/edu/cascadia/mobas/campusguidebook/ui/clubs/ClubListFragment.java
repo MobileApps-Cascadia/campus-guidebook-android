@@ -7,9 +7,9 @@ import java.util.List;
 
 import edu.cascadia.mobas.campusguidebook.R;
 import edu.cascadia.mobas.campusguidebook.data.model.Club;
-import edu.cascadia.mobas.campusguidebook.ui.events.EventsListFragment;
+import edu.cascadia.mobas.campusguidebook.ui.clubs.ClubsListFragment;
 
-public class ClubListFragment extends EventsListFragment<Club> {
+public class ClubListFragment extends ClubsListFragment<Club> {
 
     @Override
     public LiveData<List<Club>> getList() {

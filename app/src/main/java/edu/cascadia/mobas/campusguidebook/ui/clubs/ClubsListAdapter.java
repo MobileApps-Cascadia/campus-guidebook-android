@@ -62,7 +62,7 @@ public class ClubsListAdapter<T extends IEntity> extends RecyclerView.Adapter<Cl
 
         // Create a new view containing all the views for the UI of the list item
         View view = LayoutInflater.from(parentViewGroup.getContext())
-                .inflate(R.layout.list_view_item_events, parentViewGroup, false);
+                .inflate(R.layout.list_view_item_clubs, parentViewGroup, false);
         ViewHolder holder = new ViewHolder(view);
         holder.cardView.setOnClickListener(v -> {
             T item = mList.get(holder.getAdapterPosition());
@@ -82,9 +82,9 @@ public class ClubsListAdapter<T extends IEntity> extends RecyclerView.Adapter<Cl
         viewHolder.textView.setText(item.getName());
 
         // get the drawable image as livedata and add an observer
-        String imageUri = item.getImageUri();
-        LiveData<Drawable> drawableLiveData = mClubsListFragment.getImage(imageUri);
-        drawableLiveData.observe(mLifecycleOwner, viewHolder.imageView::setImageDrawable);
+        //String imageUri = item.getImageUri();
+        //LiveData<Drawable> drawableLiveData = mClubsListFragment.getImage(imageUri);
+        //drawableLiveData.observe(mLifecycleOwner, viewHolder.imageView::setImageDrawable);
     }
 
     // Used by the layout manager to determine the number of clubs in the list
