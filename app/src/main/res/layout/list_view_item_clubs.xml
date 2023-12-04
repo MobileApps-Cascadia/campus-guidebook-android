@@ -5,10 +5,15 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     tools:context=".ui.events.EventsListFragment" >
-
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10sp"
+        android:rowCount="2"
+        android:columnCount="2">
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cardview_club_list_item"
-        android:layout_width="176dp"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
         android:clickable="false"
@@ -20,7 +25,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
 
             android:id="@+id/linearLayout"
-            android:layout_width="176dp"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
@@ -28,8 +33,8 @@
 
             <ImageView
                 android:id="@+id/imageview_club_list_item_image"
-                android:layout_width="176dp"
-                android:layout_height="176dp"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
                 android:contentDescription="@string/image_club_banner"
                 android:scaleType="fitCenter"
                 android:src="@drawable/default_image"
@@ -41,7 +46,7 @@
 
             <TextView
                 android:id="@+id/textView_club_list_item_text"
-                android:layout_width="176dp"
+                android:layout_width="150dp"
                 android:layout_height="36dp"
                 android:background="@drawable/box"
                 android:gravity="center"
@@ -62,4 +67,5 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>
+    </GridLayout>
 </LinearLayout>

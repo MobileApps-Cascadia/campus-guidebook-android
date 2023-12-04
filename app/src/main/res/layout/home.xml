@@ -26,10 +26,8 @@
 
 
         <com.google.android.material.card.MaterialCardView
-
             android:id="@+id/cardView_home_events"
             android:layout_width="160dp"
-
             android:layout_height="219dp"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
