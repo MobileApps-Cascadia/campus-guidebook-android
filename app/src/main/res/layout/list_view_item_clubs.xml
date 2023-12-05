@@ -5,67 +5,70 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     tools:context=".ui.events.EventsListFragment" >
+
     <GridLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10sp"
-        android:rowCount="2"
-        android:columnCount="2">
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/cardview_club_list_item"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        android:clickable="false"
-        app:cardCornerRadius="15dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:columnCount="2"
+        android:rowCount="1">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-
-            android:id="@+id/linearLayout"
-            android:layout_width="150dp"
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardview_club_list_item"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_margin="20dp"
+            android:clickable="false"
+            app:cardCornerRadius="15dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-            <!-- Media -->
+            <androidx.constraintlayout.widget.ConstraintLayout
 
-            <ImageView
-                android:id="@+id/imageview_club_list_item_image"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:contentDescription="@string/image_club_banner"
-                android:scaleType="fitCenter"
-                android:src="@drawable/default_image"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:layout_conversion_absoluteHeight="132dp"
-                tools:layout_conversion_absoluteWidth="132dp" />
+                android:id="@+id/linearLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/textView_club_list_item_text"
-                android:layout_width="150dp"
-                android:layout_height="36dp"
-                android:background="@drawable/box"
-                android:gravity="center"
-                android:text="CLUB FOR STUDENTS OF CASCADIA"
-                android:textAlignment="center"
-                android:textColor="@color/white"
-                android:textSize="15sp"
-                android:textStyle="bold"
-                android:typeface="sans"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="@+id/imageview_club_list_item_image"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="1.0"
-                tools:layout_conversion_absoluteHeight="26dp"
-                tools:layout_conversion_absoluteWidth="350dp" />
+                <!-- Media -->
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </com.google.android.material.card.MaterialCardView>
+                <ImageView
+                    android:id="@+id/imageview_club_list_item_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:contentDescription="@string/image_club_banner"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/default_image"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:layout_conversion_absoluteHeight="132dp"
+                    tools:layout_conversion_absoluteWidth="132dp" />
+
+                <TextView
+                    android:id="@+id/textView_club_list_item_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="36dp"
+                    android:background="@drawable/box"
+                    android:gravity="center"
+                    android:text="CLUB FOR STUDENTS OF CASCADIA"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:typeface="sans"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="@+id/imageview_club_list_item_image"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="1.0"
+                    tools:layout_conversion_absoluteHeight="26dp"
+                    tools:layout_conversion_absoluteWidth="350dp" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
     </GridLayout>
 </LinearLayout>
