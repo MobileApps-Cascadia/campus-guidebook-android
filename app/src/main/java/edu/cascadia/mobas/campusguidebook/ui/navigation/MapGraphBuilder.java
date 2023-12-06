@@ -6,7 +6,7 @@ import edu.cascadia.mobas.campusguidebook.data.dao.LocationDao;
 import edu.cascadia.mobas.campusguidebook.data.model.Location;
 
 public class MapGraphBuilder {
-    private LocationDao locationDao;
+   /* private LocationDao locationDao;
     private Graph mGraph;
 
     public MapGraphBuilder(){
@@ -51,12 +51,12 @@ public class MapGraphBuilder {
                 for (Graph location2 : LocationList) {
 
                 }
-            }*/
+            }*//*
             itterationCount++;
         }
 
         return Start;
-    }
+    }*/
 
 
 }
