@@ -63,9 +63,7 @@ public class AppRepository {
         return mAppDatabase.ClubDao().getAll();
     }
 
-    public LiveData<List<Location>> getAllLocations() {
-        return mAppDatabase.LocationDao().getAll();
-    }
+
 
     // returns a list of all sustainability
     public LiveData<List<Sustainability>> getAllSustainability() {

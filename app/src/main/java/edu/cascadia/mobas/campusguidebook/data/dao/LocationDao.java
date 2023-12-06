@@ -30,7 +30,7 @@ public interface LocationDao {
     void delete(Location location);
 
     @Query("SELECT * FROM Location_Table")
-    LiveData<List<Location>> getAll();
+    List<Location> getAll();
 
     @Query("SELECT * FROM Location_Table WHERE id=:id")
     LiveData<Location> getById(long id);

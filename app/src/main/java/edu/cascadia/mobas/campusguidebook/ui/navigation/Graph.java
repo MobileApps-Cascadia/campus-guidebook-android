@@ -1,6 +1,7 @@
 package edu.cascadia.mobas.campusguidebook.ui.navigation;
 
 public class Graph {
+    String name = null;
     Graph north = null;
     Graph northeast = null;
     Graph east = null;
@@ -14,7 +15,8 @@ public class Graph {
     Graph down = null;
     int level = -1;
 
-    public void initGraphs(Graph north, Graph northeast, Graph east, Graph southeast, Graph south, Graph southwest, Graph west, Graph northwest) {
+    public void initGraph(String Name, Graph north, Graph northeast, Graph east, Graph southeast, Graph south, Graph southwest, Graph west, Graph northwest) {
+        this.name = Name;
         this.north = north;
         this.northeast = northeast;
         this.east = east;
@@ -26,6 +28,9 @@ public class Graph {
     }
 
     // Getter methods
+    public String getName() {
+        return name;
+    }
     public Graph getNorth() {
         return north;
     }
@@ -56,6 +61,41 @@ public class Graph {
 
     public Graph getNorthwest() {
         return northwest;
+    }
+    // Setter methods
+    public void setName(String name) {
+        this.name = name;
+    }
+    public void setNorth(Graph north) {
+        this.north = north;
+    }
+
+    public void setNortheast(Graph northeast) {
+        this.northeast = northeast;
+    }
+
+    public void setEast(Graph east) {
+        this.east = east;
+    }
+
+    public void setSoutheast(Graph southeast) {
+        this.southeast = southeast;
+    }
+
+    public void setSouth(Graph south) {
+        this.south = south;
+    }
+
+    public void setSouthwest(Graph southwest) {
+        this.southwest = southwest;
+    }
+
+    public void setWest(Graph west) {
+        this.west = west;
+    }
+
+    public void setNorthwest(Graph northwest) {
+        this.northwest = northwest;
     }
 
 }
