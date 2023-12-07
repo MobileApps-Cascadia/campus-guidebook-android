@@ -90,7 +90,8 @@ public class Location {
     public String getSouthEast() { return this.SouthEast; }
     public String getSouth() { return this.South; }
     public String getSouthWest() { return this.SouthWest; }
-    public String getWest() { return this.West; }public String getNorthWest() { return this.NorthWest; }
+    public String getWest() { return this.West; }
+    public String getNorthWest() { return this.NorthWest; }
     public Integer getFloorNo() { return this.FloorNo; }
     public String getUp() { return this.Up; }
     public String getDown() { return this.Down; }

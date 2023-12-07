@@ -1,4 +1,4 @@
-package edu.cascadia.mobas.campusguidebook.ui.events;
+package edu.cascadia.mobas.campusguidebook.ui.Sustainability;
 
 import static androidx.fragment.app.FragmentManager.TAG;
 
@@ -25,18 +25,19 @@ import java.util.regex.Pattern;
 
 import edu.cascadia.mobas.campusguidebook.R;
 import edu.cascadia.mobas.campusguidebook.data.model.IEntity;
+import edu.cascadia.mobas.campusguidebook.ui.Sustainability.SustsListFragment;
 
-public class EventsListAdapter<T extends IEntity> extends RecyclerView.Adapter<EventsListAdapter.ViewHolder> {
+public class SustsListAdapter<T extends IEntity> extends RecyclerView.Adapter<SustsListAdapter.ViewHolder> {
 
     private List<T> mList;
     private LifecycleOwner mLifecycleOwner;
-    private final EventsListFragment<T> mEventsListFragment;
+    private final SustsListFragment<T> mSustsListFragment;
 
     // ClubListAdapter constructor and methods
     // Initialize this adapter with a reference to the datasource to be used.
-    public EventsListAdapter(List<T> list, EventsListFragment<T> fragment) {
+    public SustsListAdapter(List<T> list, SustsListFragment<T> fragment) {
         mList = list;
-        this.mEventsListFragment = fragment;
+        this.mSustsListFragment = fragment;
     }
 
     // TODO: Investigate using SwitchMap to modify instead of completely replacing the list
@@ -62,11 +63,11 @@ public class EventsListAdapter<T extends IEntity> extends RecyclerView.Adapter<E
 
         // Create a new view containing all the views for the UI of the list item
         View view = LayoutInflater.from(parentViewGroup.getContext())
-                .inflate(R.layout.list_view_item_events, parentViewGroup, false);
+                .inflate(R.layout.list_view_item_sust, parentViewGroup, false);
         ViewHolder holder = new ViewHolder(view);
         holder.cardView.setOnClickListener(v -> {
             T item = mList.get(holder.getAdapterPosition());
-            mEventsListFragment.itemClicked(item);
+            mSustsListFragment.itemClicked(item);
 
         });
         return holder;
@@ -90,7 +91,7 @@ public class EventsListAdapter<T extends IEntity> extends RecyclerView.Adapter<E
         Log.d(TAG, "This is a debug message" + Properties);
         // get the drawable image as livedata and add an observer
         String imageUri = item.getImageUri();
-        LiveData<Drawable> drawableLiveData = mEventsListFragment.getImage(imageUri);
+        LiveData<Drawable> drawableLiveData = mSustsListFragment.getImage(imageUri);
         drawableLiveData.observe(mLifecycleOwner, viewHolder.imageView::setImageDrawable);
     }
 
