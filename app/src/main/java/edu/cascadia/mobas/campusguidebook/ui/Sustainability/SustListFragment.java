@@ -7,10 +7,10 @@ import java.util.List;
 
 import edu.cascadia.mobas.campusguidebook.R;
 import edu.cascadia.mobas.campusguidebook.data.model.Sustainability;
-import edu.cascadia.mobas.campusguidebook.ui.events.EventsListFragment;
 
 
-public class SustListFragment extends EventsListFragment<Sustainability> {
+
+public class SustListFragment extends SustsListFragment<Sustainability> {
     @Override
     public LiveData<List<Sustainability>> getList() {
         return getViewModel().getAllSustainability();

@@ -15,7 +15,7 @@
         android:rowCount="1">
 
         <com.google.android.material.card.MaterialCardView
-            android:id="@+id/cardview_club_list_item"
+            android:id="@+id/cardview_sust_list_item"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
@@ -35,10 +35,10 @@
                 <!-- Media -->
 
                 <ImageView
-                    android:id="@+id/imageview_club_list_item_image"
+                    android:id="@+id/imageview_sust_list_item_image"
                     android:layout_width="match_parent"
                     android:layout_height="150dp"
-                    android:contentDescription="@string/image_club_banner"
+                    android:contentDescription="@string/image_sust_banner"
                     android:scaleType="fitCenter"
                     android:src="@drawable/default_image"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -49,12 +49,12 @@
                     tools:layout_conversion_absoluteWidth="132dp" />
 
                 <TextView
-                    android:id="@+id/textView_club_list_item_text"
+                    android:id="@+id/textView_sust_list_item_text"
                     android:layout_width="match_parent"
                     android:layout_height="36dp"
                     android:background="@drawable/box"
                     android:gravity="center"
-                    android:text="CLUB FOR STUDENTS OF CASCADIA"
+                    android:text="Sustainability FOR STUDENTS OF CASCADIA"
                     android:textAlignment="center"
                     android:textColor="@color/white"
                     android:textSize="15sp"
@@ -63,7 +63,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="1.0"
-                    app:layout_constraintStart_toStartOf="@+id/imageview_club_list_item_image"
+                    app:layout_constraintStart_toStartOf="@+id/imageview_sust_list_item_image"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="1.0"
                     tools:layout_conversion_absoluteHeight="26dp"

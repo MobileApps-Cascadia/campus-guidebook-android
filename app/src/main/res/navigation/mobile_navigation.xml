@@ -16,15 +16,13 @@
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim" />
         <action
-            android:id="@+id/action_nav_home_to_nav_sust_list"
-            app:destination="@id/nav_sust_list"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim" />
-        <action
             android:id="@+id/action_nav_home_to_nav_clubs"
             app:destination="@id/nav_club_list"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim" />
+        <action
+            android:id="@+id/action_nav_home_to_nav_sust_list"
+            app:destination="@id/nav_sust_list" />
     </fragment>
 
 
@@ -56,23 +54,19 @@
     </fragment>
 
     <fragment
-        android:id="@+id/nav_sust_list"
-        android:name="edu.cascadia.mobas.campusguidebook.ui.Sustainability.SustListFragment"
-        android:label="@string/menu_sust_list"
-        tools:layout="@layout/sust_list" >
-        <action
-            android:id="@+id/action_nav_sust_list_to_nav_home"
-            app:destination="@id/nav_home" />
-        <action
-            android:id="@+id/action_nav_sust_list_to_nav_sust_details"
-            app:destination="@id/nav_sust_details" />
-    </fragment>
-
-    <fragment
         android:id="@+id/nav_sust_details"
         android:name="edu.cascadia.mobas.campusguidebook.ui.Sustainability.SustDetailsFragment"
         android:label="@string/sustainability_Details"
         tools:layout="@layout/details_view" >
+    </fragment>
+    <fragment
+        android:id="@+id/nav_sust_list"
+        android:name="edu.cascadia.mobas.campusguidebook.ui.Sustainability.SustListFragment"
+        android:label="@string/sustainability_Details"
+        tools:layout="@layout/details_view" >
+        <action
+            android:id="@+id/action_nav_sust_list_to_nav_sust_details"
+            app:destination="@id/nav_sust_details" />
     </fragment>
 
     <fragment

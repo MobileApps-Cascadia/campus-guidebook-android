@@ -84,11 +84,6 @@ public class SustsListAdapter<T extends IEntity> extends RecyclerView.Adapter<Su
 
         Map<String, String> Properties = item.getProperties();
 
-
-        viewHolder.locationText.setText(Properties.get("Location"));
-        viewHolder.timeText.setText(dateTimeParse(Properties.get("Date/Time")));
-        //viewHolder.textView.setText(Properties.get("Location"));
-        Log.d(TAG, "This is a debug message" + Properties);
         // get the drawable image as livedata and add an observer
         String imageUri = item.getImageUri();
         LiveData<Drawable> drawableLiveData = mSustsListFragment.getImage(imageUri);
@@ -113,48 +108,16 @@ public class SustsListAdapter<T extends IEntity> extends RecyclerView.Adapter<Su
         public final CardView cardView;
         public final ImageView imageView;
         public final TextView textView;
-        public final TextView locationText;
-        public final TextView timeText;
 
         // The constructor takes a parent view (a layout defined in xml) on the list item fragment
         // and allows us to get references to the views it contains
         public ViewHolder(View parentView) {
             super(parentView);
             // look up and assign the views in the club list item fragment to our variables
-            cardView = parentView.findViewById(R.id.cardview_list_item);
-            imageView = parentView.findViewById(R.id.imageview_list_item_image);
-            textView = parentView.findViewById(R.id.textView_list_item_text);
-            locationText = parentView.findViewById(R.id.list_view_location_text);
-            timeText = parentView.findViewById(R.id.list_view_time_text);
+            cardView = parentView.findViewById(R.id.cardview_sust_list_item);
+            imageView = parentView.findViewById(R.id.imageview_sust_list_item_image);
+            textView = parentView.findViewById(R.id.textView_sust_list_item_text);
         }
     }  // End of static ViewHolder class
-    public String dateTimeParse(String DateTime){
-        // Define the regex pattern
-        Pattern pattern = Pattern.compile("(\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2})");
 
-        // Match the pattern against the input date
-        Matcher matcher = pattern.matcher(DateTime);
-
-        // Check if the pattern is found
-        if (matcher.find()) {
-            // Extract date and time components
-            String datePart = matcher.group(1);
-
-
-            // Format the date and time
-            String formattedDate = formatDate(datePart) + " " + formatTime(datePart);
-
-            return formattedDate;
-        } else {
-            return "Invalid date format";
-        }
-    }
-    private String formatDate(String datePart) {
-        // Format the date as MM/dd/yy
-        return datePart.substring(5, 7) + "/" + datePart.substring(8, 10) + "/" + datePart.substring(2, 4);
-    }
-    private String formatTime(String datePart) {
-        // Format the time as HH:mm
-        return datePart.substring(11, 16);
-    }
 }

@@ -20,7 +20,7 @@ import java.util.List;
 
 import edu.cascadia.mobas.campusguidebook.R;
 import edu.cascadia.mobas.campusguidebook.data.model.IEntity;
-import edu.cascadia.mobas.campusguidebook.ui.Susts.SustsListAdapter;
+import edu.cascadia.mobas.campusguidebook.ui.Sustainability.SustsListAdapter;
 import edu.cascadia.mobas.campusguidebook.viewmodel.MainActivityViewModel;
 
 // ListFragment
