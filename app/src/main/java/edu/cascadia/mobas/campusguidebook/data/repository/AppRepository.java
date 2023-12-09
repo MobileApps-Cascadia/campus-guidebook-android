@@ -63,6 +63,11 @@ public class AppRepository {
         return mAppDatabase.ClubDao().getAll();
     }
 
+    // returns a list of all locations
+    public List<Location> getAllLocations() {
+        return mAppDatabase.locationDao().getAll();
+    }
+
 
 
     // returns a list of all sustainability
@@ -200,7 +205,7 @@ public class AppRepository {
     public void insert(Location... locations) {
         mAppExecutors.diskIO().execute( () -> mAppDatabase.runInTransaction( () -> {
             for (Location location : locations) {
-                mAppDatabase.LocationDao().insert(location);
+                mAppDatabase.locationDao().insert(location);
             }
         }));
     }
@@ -208,7 +213,7 @@ public class AppRepository {
     public void update(Location... locations) {
         mAppExecutors.diskIO().execute( () -> mAppDatabase.runInTransaction( () -> {
             for (Location location : locations) {
-                mAppDatabase.LocationDao().update(location);
+                mAppDatabase.locationDao().update(location);
             }
         }));
     }
@@ -216,7 +221,7 @@ public class AppRepository {
     public void delete(Location... locations) {
         mAppExecutors.diskIO().execute( () -> mAppDatabase.runInTransaction( () -> {
             for (Location location : locations) {
-                mAppDatabase.LocationDao().delete(location);
+                mAppDatabase.locationDao().delete(location);
             }
         }));
     }

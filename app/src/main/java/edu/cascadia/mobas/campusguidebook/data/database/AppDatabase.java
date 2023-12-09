@@ -46,7 +46,7 @@ public abstract class AppDatabase extends RoomDatabase {
     public abstract SustainabilityDao SustainabilityDao();
     public abstract UserDao UserDao();
 
-    public abstract LocationDao LocationDao();
+    public abstract LocationDao locationDao();
 
     // on below line we are getting instance for our database.
     public static AppDatabase getInstance(final Application application, final AppExecutors appExecutors) {

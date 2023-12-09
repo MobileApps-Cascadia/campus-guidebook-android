@@ -151,7 +151,7 @@ public class SampleData {
                 for (User user : SampleData.users)
                     appDatabase.UserDao().insert(user);
                 for (Location location : SampleData.location)
-                    appDatabase.LocationDao().insert(location);
+                    appDatabase.locationDao().insert(location);
                 Log.d("AppDatabase", "Adding sample data FINISHED");
             });
         });
