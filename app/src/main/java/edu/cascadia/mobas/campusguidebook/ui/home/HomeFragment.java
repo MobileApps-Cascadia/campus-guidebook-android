@@ -7,7 +7,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
+import java.util.Random;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
@@ -18,6 +18,7 @@ import androidx.navigation.Navigation;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 import edu.cascadia.mobas.campusguidebook.R;
 import edu.cascadia.mobas.campusguidebook.data.model.Location;
@@ -110,58 +111,71 @@ public class HomeFragment extends Fragment {
     public List<String> calculate (String Start, String End) {
         Integer Distance = 0;
         Location currentLocation = getLocation(Start);
-        String From = null;
+        List<String> History = new ArrayList<>();
         List<String> Steps = new ArrayList<>();
         Steps.add(Start);
-        while (currentLocation.getNorth() != End || currentLocation.getNorthEast() != End || currentLocation.getEast() != End || currentLocation.getSouthEast() != End || currentLocation.getSouth() != End || currentLocation.getSouthWest() != End || currentLocation.getWest() != End) {
-            Log.d("t", "0x45B" + Steps);
-            if (currentLocation.getNorth() != null && currentLocation.getNorth() != From) {
-                From = currentLocation.getName();
-                Steps.add(currentLocation.getName());
-                currentLocation = getLocation(currentLocation.getNorth());
-                continue;
-            }
-            String nw = currentLocation.getNorthWest();
-            //Log.d("t", "0x45B" + nw.equals(From));
-            if (nw != null && !nw.equals(From)) {
-                From = currentLocation.getName();
-                Steps.add(nw);
-                currentLocation = getLocation(currentLocation.getNorthWest());
-            }
-            if (currentLocation.getNorthEast() != null && !currentLocation.getNorthEast().equals(From)) {
-                From = currentLocation.getName();
-                Steps.add(currentLocation.getName());
-                currentLocation = getLocation(currentLocation.getNorthEast());
-                continue;
-            }
-            if (currentLocation.getEast() != null && currentLocation.getEast() != From) {
-                From = currentLocation.getName();
-                Steps.add(currentLocation.getName());
-                currentLocation = getLocation(currentLocation.getEast());
-                continue;
-            }
-            if (currentLocation.getSouthEast() != null && currentLocation.getSouthEast() != From) {
-                From = currentLocation.getName();
-                Steps.add(currentLocation.getName());
-                currentLocation = getLocation(currentLocation.getSouthEast());
-                continue;
-            }
-            if (currentLocation.getSouth() != null && currentLocation.getSouth() != From) {
-                From = currentLocation.getName();
-                Steps.add(currentLocation.getName());
-                currentLocation = getLocation(currentLocation.getSouth());
-                continue;
-            }
-            if (currentLocation.getSouthWest() != null && currentLocation.getSouthWest() != From) {
-                From = currentLocation.getName();
-                Steps.add(currentLocation.getName());
-                currentLocation = getLocation(currentLocation.getSouthWest());
-                continue;
-            }
-            if (currentLocation.getWest() != null && currentLocation.getWest() != From) {
-                From = currentLocation.getName();
-                Steps.add(currentLocation.getName());
-                currentLocation = getLocation(currentLocation.getWest());
+        //Choosing a random direction to look at and keeping history of directions chosen.
+        Random random = new Random();
+        int randomNumber = random.nextInt(8) + 1;
+        List<Integer> randHistory = new ArrayList<>();
+        if(currentLocation != null) {
+            while (!currentLocation.getNorth().equals(End) && !currentLocation.getNorthEast().equals(End) && !currentLocation.getEast().equals(End) && !currentLocation.getSouthEast().equals(End) && !currentLocation.getSouth().equals(End) && !currentLocation.getSouthWest().equals(End) && !currentLocation.getWest().equals(End)) {
+                Log.d("t", "0x45B" + Steps);
+
+                while(!randHistory.contains(randomNumber)) {
+                    randomNumber = random.nextInt(8) + 1;
+                }
+                randHistory.add(randomNumber);
+
+                if (!currentLocation.getNorth().equals("Null") && !History.contains(currentLocation.getNorth())) {
+                    Steps.add(currentLocation.getName());
+                    History.add(currentLocation.getName());
+                    currentLocation = getLocation(currentLocation.getNorth());
+                    continue;
+                }
+                //Log.d("t", "0x81A2 - " + nw.equals(From));
+                if (!currentLocation.getNorthWest().equals("Null") && !History.contains(currentLocation.getNorthWest())) {
+                    //Log.d("t", "0x81A2 - Trigger NW");
+                    Steps.add(currentLocation.getName());
+                    History.add(currentLocation.getName());
+                    currentLocation = getLocation(currentLocation.getNorthWest());
+                    continue;
+                }
+                if (!currentLocation.getNorthEast().equals("Null") && !History.contains(currentLocation.getNorthEast())) {
+                    Steps.add(currentLocation.getName());
+                    History.add(currentLocation.getName());
+                    currentLocation = getLocation(currentLocation.getNorthEast());
+                    continue;
+                }
+                if (!currentLocation.getEast().equals("Null") && !History.contains(currentLocation.getEast())) {
+                    Steps.add(currentLocation.getName());
+                    History.add(currentLocation.getName());
+                    currentLocation = getLocation(currentLocation.getEast());
+                    continue;
+                }
+                if (!currentLocation.getSouthEast().equals("Null") && !History.contains(currentLocation.getSouthEast())) {
+                    Steps.add(currentLocation.getName());
+                    History.add(currentLocation.getName());
+                    currentLocation = getLocation(currentLocation.getSouthEast());
+                    continue;
+                }
+                if (!currentLocation.getSouth().equals("Null") && !History.contains(currentLocation.getSouth())) {
+                    Steps.add(currentLocation.getName());
+                    History.add(currentLocation.getName());
+                    currentLocation = getLocation(currentLocation.getSouth());
+                    continue;
+                }
+                if (!currentLocation.getSouthWest().equals("Null") && !History.contains(currentLocation.getSouthWest())) {
+                    Steps.add(currentLocation.getName());
+                    History.add(currentLocation.getName());
+                    currentLocation = getLocation(currentLocation.getSouthWest());
+                    continue;
+                }
+                if (!currentLocation.getWest().equals("Null") && !History.contains(currentLocation.getWest())) {
+                    Steps.add(currentLocation.getName());
+                    History.add(currentLocation.getName());
+                    currentLocation = getLocation(currentLocation.getWest());
+                }
             }
         }
         return Steps;
