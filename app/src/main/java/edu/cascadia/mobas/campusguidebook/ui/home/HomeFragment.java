@@ -1,5 +1,6 @@
 package edu.cascadia.mobas.campusguidebook.ui.home;
 
+import android.annotation.SuppressLint;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -14,6 +15,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -41,6 +43,7 @@ public class HomeFragment extends Fragment {
 
     // All UI behavior has moved from MainActivity to fragments
     // View initialization logic goes in onCreateView
+    @SuppressLint("StaticFieldLeak")
     @Override
     @Nullable
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -55,6 +58,7 @@ public class HomeFragment extends Fragment {
                 return mLocations;
             }
 
+            @SuppressLint("StaticFieldLeak")
             @Override
             protected void onPostExecute(List<Location> locations) {
                 //TODO: For Testing:
@@ -107,8 +111,10 @@ public class HomeFragment extends Fragment {
         Integer Distance = 0;
         Location currentLocation = getLocation(Start);
         String From = null;
-        List<String> Steps = Collections.singletonList(Start);
+        List<String> Steps = new ArrayList<>();
+        Steps.add(Start);
         while (currentLocation.getNorth() != End || currentLocation.getNorthEast() != End || currentLocation.getEast() != End || currentLocation.getSouthEast() != End || currentLocation.getSouth() != End || currentLocation.getSouthWest() != End || currentLocation.getWest() != End) {
+            Log.d("t", "0x45B" + Steps);
             if (currentLocation.getNorth() != null && currentLocation.getNorth() != From) {
                 From = currentLocation.getName();
                 Steps.add(currentLocation.getName());
@@ -116,12 +122,13 @@ public class HomeFragment extends Fragment {
                 continue;
             }
             String nw = currentLocation.getNorthWest();
-            if (nw != null && nw != From) {
+            //Log.d("t", "0x45B" + nw.equals(From));
+            if (nw != null && !nw.equals(From)) {
                 From = currentLocation.getName();
                 Steps.add(nw);
                 currentLocation = getLocation(currentLocation.getNorthWest());
             }
-            if (currentLocation.getNorthEast() != null && currentLocation.getNorthEast() != From) {
+            if (currentLocation.getNorthEast() != null && !currentLocation.getNorthEast().equals(From)) {
                 From = currentLocation.getName();
                 Steps.add(currentLocation.getName());
                 currentLocation = getLocation(currentLocation.getNorthEast());
