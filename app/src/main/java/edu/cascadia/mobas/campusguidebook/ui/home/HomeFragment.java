@@ -113,70 +113,78 @@ public class HomeFragment extends Fragment {
         Location currentLocation = getLocation(Start);
         List<String> History = new ArrayList<>();
         List<String> Steps = new ArrayList<>();
-        Steps.add(Start);
+        //Steps.add(Start);
         //Choosing a random direction to look at and keeping history of directions chosen.
         Random random = new Random();
         int randomNumber = random.nextInt(8) + 1;
         List<Integer> randHistory = new ArrayList<>();
+        randHistory.add(randomNumber);
         if(currentLocation != null) {
             while (!currentLocation.getNorth().equals(End) && !currentLocation.getNorthEast().equals(End) && !currentLocation.getEast().equals(End) && !currentLocation.getSouthEast().equals(End) && !currentLocation.getSouth().equals(End) && !currentLocation.getSouthWest().equals(End) && !currentLocation.getWest().equals(End)) {
                 Log.d("t", "0x45B" + Steps);
 
-                while(!randHistory.contains(randomNumber)) {
+                while(randHistory.contains(randomNumber)) {
                     randomNumber = random.nextInt(8) + 1;
                 }
                 randHistory.add(randomNumber);
 
-                if (!currentLocation.getNorth().equals("Null") && !History.contains(currentLocation.getNorth())) {
+                if (randomNumber == 1 && !currentLocation.getNorth().equals("Null") && !History.contains(currentLocation.getNorth())) {
                     Steps.add(currentLocation.getName());
                     History.add(currentLocation.getName());
                     currentLocation = getLocation(currentLocation.getNorth());
+                    randHistory.clear();
                     continue;
                 }
                 //Log.d("t", "0x81A2 - " + nw.equals(From));
-                if (!currentLocation.getNorthWest().equals("Null") && !History.contains(currentLocation.getNorthWest())) {
+                if (randomNumber == 2 && !currentLocation.getNorthWest().equals("Null") && !History.contains(currentLocation.getNorthWest())) {
                     //Log.d("t", "0x81A2 - Trigger NW");
                     Steps.add(currentLocation.getName());
                     History.add(currentLocation.getName());
                     currentLocation = getLocation(currentLocation.getNorthWest());
+                    randHistory.clear();
                     continue;
                 }
-                if (!currentLocation.getNorthEast().equals("Null") && !History.contains(currentLocation.getNorthEast())) {
+                if (randomNumber == 3 && !currentLocation.getNorthEast().equals("Null") && !History.contains(currentLocation.getNorthEast())) {
                     Steps.add(currentLocation.getName());
                     History.add(currentLocation.getName());
                     currentLocation = getLocation(currentLocation.getNorthEast());
+                    randHistory.clear();
                     continue;
                 }
-                if (!currentLocation.getEast().equals("Null") && !History.contains(currentLocation.getEast())) {
+                if (randomNumber == 4 && !currentLocation.getEast().equals("Null") && !History.contains(currentLocation.getEast())) {
                     Steps.add(currentLocation.getName());
                     History.add(currentLocation.getName());
                     currentLocation = getLocation(currentLocation.getEast());
+                    randHistory.clear();
                     continue;
                 }
-                if (!currentLocation.getSouthEast().equals("Null") && !History.contains(currentLocation.getSouthEast())) {
+                if (randomNumber == 5 && !currentLocation.getSouthEast().equals("Null") && !History.contains(currentLocation.getSouthEast())) {
                     Steps.add(currentLocation.getName());
                     History.add(currentLocation.getName());
                     currentLocation = getLocation(currentLocation.getSouthEast());
+                    randHistory.clear();
                     continue;
                 }
-                if (!currentLocation.getSouth().equals("Null") && !History.contains(currentLocation.getSouth())) {
+                if (randomNumber == 6 && !currentLocation.getSouth().equals("Null") && !History.contains(currentLocation.getSouth())) {
                     Steps.add(currentLocation.getName());
                     History.add(currentLocation.getName());
                     currentLocation = getLocation(currentLocation.getSouth());
+                    randHistory.clear();
                     continue;
                 }
-                if (!currentLocation.getSouthWest().equals("Null") && !History.contains(currentLocation.getSouthWest())) {
+                if (randomNumber == 7 && !currentLocation.getSouthWest().equals("Null") && !History.contains(currentLocation.getSouthWest())) {
                     Steps.add(currentLocation.getName());
                     History.add(currentLocation.getName());
                     currentLocation = getLocation(currentLocation.getSouthWest());
-                    continue;
+
                 }
-                if (!currentLocation.getWest().equals("Null") && !History.contains(currentLocation.getWest())) {
+                if (randomNumber == 8 && !currentLocation.getWest().equals("Null") && !History.contains(currentLocation.getWest())) {
                     Steps.add(currentLocation.getName());
                     History.add(currentLocation.getName());
                     currentLocation = getLocation(currentLocation.getWest());
                 }
             }
+            Steps.add(End);
         }
         return Steps;
     }
