@@ -23,6 +23,9 @@
         <action
             android:id="@+id/action_nav_home_to_nav_sust_list"
             app:destination="@id/nav_sust_list" />
+        <action
+            android:id="@+id/action_nav_home_to_to_navigation_loading"
+            app:destination="@id/to_navigation_loading" />
     </fragment>
 
 
@@ -95,4 +98,21 @@
             app:destination="@id/nav_event_list"
             app:popUpTo="@id/nav_event_list" />
     </fragment>
+
+    <fragment
+        android:id="@+id/to_navigation_loading"
+        android:name="edu.cascadia.mobas.campusguidebook.ui.navigation.NavigationLoadingFragment"
+        android:label="NavLoading"
+        tools:layout="@layout/navigation_loading_fragment" >
+        <action
+            android:id="@+id/action_to_navigation_loading_to_to_navigation"
+            app:destination="@id/to_navigation" />
+    </fragment>
+    <fragment
+        android:id="@+id/to_navigation"
+        android:name="edu.cascadia.mobas.campusguidebook.ui.navigation.NavigationFragment"
+        android:label="Nav"
+        tools:layout="@layout/navigation" >
+    </fragment>
+
 </navigation>
