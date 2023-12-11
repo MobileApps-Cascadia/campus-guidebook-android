@@ -8,11 +8,16 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import java.util.List;
+
 import edu.cascadia.mobas.campusguidebook.R;
+import edu.cascadia.mobas.campusguidebook.data.model.Location;
 
 // ListFragment
 // Base class for displaying a recyclerview for the provided type
 public abstract class NavigationLoadingFragment extends Fragment {
+
+    private List<Location> mLocations;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

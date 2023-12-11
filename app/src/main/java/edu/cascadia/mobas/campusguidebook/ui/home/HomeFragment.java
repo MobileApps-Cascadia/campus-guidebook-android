@@ -7,6 +7,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import java.util.Arrays;
 import java.util.Random;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,14 +18,11 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-import java.util.Objects;
 
 import edu.cascadia.mobas.campusguidebook.R;
 import edu.cascadia.mobas.campusguidebook.data.model.Location;
 import edu.cascadia.mobas.campusguidebook.databinding.HomeBinding;
-import edu.cascadia.mobas.campusguidebook.ui.navigation.ShortestPath;
 import edu.cascadia.mobas.campusguidebook.viewmodel.MainActivityViewModel;
 
 
@@ -64,7 +63,9 @@ public class HomeFragment extends Fragment {
             protected void onPostExecute(List<Location> locations) {
                 //TODO: For Testing:
 
-                List<String> path = calculate("Parking 1","15 Min Parking 1");
+                //List<String> path = calculate("Parking 1","15 Min Parking 1");
+                List<String> path = calculate("Parking 1","Bus stop 1");
+                //List<String> path = calculate("Parking 1","CC01 Entry LL");
                 Integer i = 0;
                 for (String item : path) {
                     i++;
@@ -102,91 +103,114 @@ public class HomeFragment extends Fragment {
         super.onDestroyView();
         binding = null;
     }
+    List<String> Steps = new ArrayList<>();
+    List<Integer> excludedNumbers = new ArrayList<>();
+    Location currentLocation;
+    Integer exeCount = 0;
 
+    boolean returnedPath = false;
+    public List<String> calculate (String mStart, String mEnd){
 
+        List<String> mPath = calculatePath(mStart, mEnd);
 
-
-
-
-    public List<String> calculate (String Start, String End) {
-        Integer Distance = 0;
-        Location currentLocation = getLocation(Start);
-        List<String> History = new ArrayList<>();
-        List<String> Steps = new ArrayList<>();
-        //Steps.add(Start);
-        //Choosing a random direction to look at and keeping history of directions chosen.
-        Random random = new Random();
-        int randomNumber = random.nextInt(8) + 1;
-        List<Integer> randHistory = new ArrayList<>();
-        randHistory.add(randomNumber);
-        if(currentLocation != null) {
-            while (!currentLocation.getNorth().equals(End) && !currentLocation.getNorthEast().equals(End) && !currentLocation.getEast().equals(End) && !currentLocation.getSouthEast().equals(End) && !currentLocation.getSouth().equals(End) && !currentLocation.getSouthWest().equals(End) && !currentLocation.getWest().equals(End)) {
-                Log.d("t", "0x45B" + Steps);
-
-                while(randHistory.contains(randomNumber)) {
-                    randomNumber = random.nextInt(8) + 1;
-                }
-                randHistory.add(randomNumber);
-
-                if (randomNumber == 1 && !currentLocation.getNorth().equals("Null") && !History.contains(currentLocation.getNorth())) {
-                    Steps.add(currentLocation.getName());
-                    History.add(currentLocation.getName());
-                    currentLocation = getLocation(currentLocation.getNorth());
-                    randHistory.clear();
-                    continue;
-                }
-                //Log.d("t", "0x81A2 - " + nw.equals(From));
-                if (randomNumber == 2 && !currentLocation.getNorthWest().equals("Null") && !History.contains(currentLocation.getNorthWest())) {
-                    //Log.d("t", "0x81A2 - Trigger NW");
-                    Steps.add(currentLocation.getName());
-                    History.add(currentLocation.getName());
-                    currentLocation = getLocation(currentLocation.getNorthWest());
-                    randHistory.clear();
-                    continue;
-                }
-                if (randomNumber == 3 && !currentLocation.getNorthEast().equals("Null") && !History.contains(currentLocation.getNorthEast())) {
-                    Steps.add(currentLocation.getName());
-                    History.add(currentLocation.getName());
-                    currentLocation = getLocation(currentLocation.getNorthEast());
-                    randHistory.clear();
-                    continue;
-                }
-                if (randomNumber == 4 && !currentLocation.getEast().equals("Null") && !History.contains(currentLocation.getEast())) {
-                    Steps.add(currentLocation.getName());
-                    History.add(currentLocation.getName());
-                    currentLocation = getLocation(currentLocation.getEast());
-                    randHistory.clear();
-                    continue;
-                }
-                if (randomNumber == 5 && !currentLocation.getSouthEast().equals("Null") && !History.contains(currentLocation.getSouthEast())) {
-                    Steps.add(currentLocation.getName());
-                    History.add(currentLocation.getName());
-                    currentLocation = getLocation(currentLocation.getSouthEast());
-                    randHistory.clear();
-                    continue;
-                }
-                if (randomNumber == 6 && !currentLocation.getSouth().equals("Null") && !History.contains(currentLocation.getSouth())) {
-                    Steps.add(currentLocation.getName());
-                    History.add(currentLocation.getName());
-                    currentLocation = getLocation(currentLocation.getSouth());
-                    randHistory.clear();
-                    continue;
-                }
-                if (randomNumber == 7 && !currentLocation.getSouthWest().equals("Null") && !History.contains(currentLocation.getSouthWest())) {
-                    Steps.add(currentLocation.getName());
-                    History.add(currentLocation.getName());
-                    currentLocation = getLocation(currentLocation.getSouthWest());
-
-                }
-                if (randomNumber == 8 && !currentLocation.getWest().equals("Null") && !History.contains(currentLocation.getWest())) {
-                    Steps.add(currentLocation.getName());
-                    History.add(currentLocation.getName());
-                    currentLocation = getLocation(currentLocation.getWest());
-                }
-            }
-            Steps.add(End);
+        while (mPath == null && returnedPath == false) {
+            Log.d("t", "0x84WQ - Restarting Path");
+            Steps.clear();
+            excludedNumbers.clear();
+            currentLocation = null;
+            mPath = calculatePath(mStart, mEnd);
         }
+
+        returnedPath = true;
+        return mPath;
+    }
+    public List<String> calculatePath (String Start, String End) {
+        currentLocation = getLocation(Start);
+
+
+        List<String> directions = Arrays.asList(
+                currentLocation.getNorth(),
+                currentLocation.getNorthEast(),
+                currentLocation.getEast(),
+                currentLocation.getSouthEast(),
+                currentLocation.getSouth(),
+                currentLocation.getSouthWest(),
+                currentLocation.getWest(),
+                currentLocation.getNorthWest()
+        );
+
+        while (directions.stream().noneMatch(direction -> direction.equals(End))) {
+            //Log.d("t", "0x89D3" + Steps);
+            directions = Arrays.asList(
+                    currentLocation.getNorth(),
+                    currentLocation.getNorthEast(),
+                    currentLocation.getEast(),
+                    currentLocation.getSouthEast(),
+                    currentLocation.getSouth(),
+                    currentLocation.getSouthWest(),
+                    currentLocation.getWest(),
+                    currentLocation.getNorthWest()
+            );
+            //if (Steps.size() == 2) {
+            //Log.d("t", "0x89DA   " + currentLocation.getName() + "  Dir:  " + directions);
+            //}
+            switch (getRand(excludedNumbers)) {
+                case 1:
+                    moveAndAddToHistory(currentLocation.getNorth());
+                    break;
+                case 2:
+                    moveAndAddToHistory(currentLocation.getNorthWest());
+                    break;
+                case 3:
+                    moveAndAddToHistory(currentLocation.getNorthEast());
+                    break;
+                case 4:
+                    moveAndAddToHistory(currentLocation.getEast());
+                    break;
+                case 5:
+                    moveAndAddToHistory(currentLocation.getSouthEast());
+                    break;
+                case 6:
+                    moveAndAddToHistory(currentLocation.getSouth());
+                    break;
+                case 7:
+                    moveAndAddToHistory(currentLocation.getSouthWest());
+                    break;
+                case 8:
+                    moveAndAddToHistory(currentLocation.getWest());
+                    break;
+                default:
+            }
+            exeCount++;
+            if (exeCount > 30){
+                exeCount = 0;
+                return null;
+            }
+
+        }
+        if (!directions.stream().noneMatch(direction -> direction.equals(End))){
+            Steps.add(currentLocation.getName());
+        }
+
+        Steps.add(End);
         return Steps;
+    }
+
+
+    public Integer getRand (List<Integer> excludedNumbers){
+        Random random = new Random();
+        int randomNumber;
+        do {
+            randomNumber = random.nextInt(8) + 1;
+        } while (excludedNumbers.contains(randomNumber));
+        return randomNumber;
+    }
+    private void moveAndAddToHistory(String direction) {
+        if (!direction.equals("Null") && !Steps.contains(direction)) {
+            Steps.add(currentLocation.getName());
+            currentLocation = getLocation(direction);
+            excludedNumbers.clear();
+        }
     }
     private Location getLocation(String loc){
         for (Location location : mLocations) {
@@ -197,4 +221,6 @@ public class HomeFragment extends Fragment {
         }
         return null;
     }
+
+
 }
