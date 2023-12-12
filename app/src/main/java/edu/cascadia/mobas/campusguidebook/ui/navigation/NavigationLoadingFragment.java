@@ -72,8 +72,8 @@ public class NavigationLoadingFragment extends Fragment {
 
                 Bundle bundle = new Bundle();
                 //List<String> path = calculate("Parking 1","15 Min Parking 1");
-                List<String> path = calculate("Parking 1","Bus stop 1");
-                //List<String> path = calculate("Parking 1","CC01 Entry LL");
+                //List<String> path = calculate("Parking 1","Bus stop 1");
+                List<String> path = calculate("Parking 1","CC01 Entry LL");
                 Integer i = 0;
                 for (String item : path) {
                     i++;
