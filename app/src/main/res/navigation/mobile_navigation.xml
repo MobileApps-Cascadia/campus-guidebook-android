@@ -16,15 +16,16 @@
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim" />
         <action
-            android:id="@+id/action_nav_home_to_nav_sust_list"
-            app:destination="@id/nav_sust_list"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim" />
-        <action
             android:id="@+id/action_nav_home_to_nav_clubs"
             app:destination="@id/nav_club_list"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim" />
+        <action
+            android:id="@+id/action_nav_home_to_nav_sust_list"
+            app:destination="@id/nav_sust_list" />
+        <action
+            android:id="@+id/action_nav_home_to_to_navigation_loading"
+            app:destination="@id/to_navigation_loading" />
     </fragment>
 
 
@@ -32,7 +33,7 @@
         android:id="@+id/nav_event_list"
         android:name="edu.cascadia.mobas.campusguidebook.ui.events.EventListFragment"
         android:label="@string/menu_events"
-        tools:layout="@layout/list_view" >
+        tools:layout="@layout/list_view_events" >
 
         <action
             android:id="@+id/action_nav_events_to_nav_home"
@@ -46,7 +47,7 @@
         android:id="@+id/nav_club_list"
         android:name="edu.cascadia.mobas.campusguidebook.ui.clubs.ClubListFragment"
         android:label="Clubs"
-        tools:layout="@layout/list_view" >
+        tools:layout="@layout/list_view_clubs" >
         <action
             android:id="@+id/action_nav_clubs_to_nav_home"
             app:destination="@id/nav_home" />
@@ -56,23 +57,19 @@
     </fragment>
 
     <fragment
-        android:id="@+id/nav_sust_list"
-        android:name="edu.cascadia.mobas.campusguidebook.ui.Sustainability.SustListFragment"
-        android:label="@string/menu_sust_list"
-        tools:layout="@layout/sust_list" >
-        <action
-            android:id="@+id/action_nav_sust_list_to_nav_home"
-            app:destination="@id/nav_home" />
-        <action
-            android:id="@+id/action_nav_sust_list_to_nav_sust_details"
-            app:destination="@id/nav_sust_details" />
-    </fragment>
-
-    <fragment
         android:id="@+id/nav_sust_details"
         android:name="edu.cascadia.mobas.campusguidebook.ui.Sustainability.SustDetailsFragment"
         android:label="@string/sustainability_Details"
         tools:layout="@layout/details_view" >
+    </fragment>
+    <fragment
+        android:id="@+id/nav_sust_list"
+        android:name="edu.cascadia.mobas.campusguidebook.ui.Sustainability.SustListFragment"
+        android:label="@string/sustainability_Details"
+        tools:layout="@layout/details_view" >
+        <action
+            android:id="@+id/action_nav_sust_list_to_nav_sust_details"
+            app:destination="@id/nav_sust_details" />
     </fragment>
 
     <fragment
@@ -101,4 +98,21 @@
             app:destination="@id/nav_event_list"
             app:popUpTo="@id/nav_event_list" />
     </fragment>
+
+    <fragment
+        android:id="@+id/to_navigation_loading"
+        android:name="edu.cascadia.mobas.campusguidebook.ui.navigation.NavigationLoadingFragment"
+        android:label="NavLoading"
+        tools:layout="@layout/navigation_loading_fragment" >
+        <action
+            android:id="@+id/action_to_navigation_loading_to_to_navigation"
+            app:destination="@id/to_navigation" />
+    </fragment>
+    <fragment
+        android:id="@+id/to_navigation"
+        android:name="edu.cascadia.mobas.campusguidebook.ui.navigation.NavigationFragment"
+        android:label="Nav"
+        tools:layout="@layout/navigation" >
+    </fragment>
+
 </navigation>

@@ -1,6 +1,10 @@
-package edu.cascadia.mobas.campusguidebook.ui;
+package edu.cascadia.mobas.campusguidebook.ui.events;
 
+import static androidx.fragment.app.FragmentManager.TAG;
+
+import android.annotation.SuppressLint;
 import android.graphics.drawable.Drawable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,21 +19,24 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import edu.cascadia.mobas.campusguidebook.R;
 import edu.cascadia.mobas.campusguidebook.data.model.IEntity;
 
-public class BaseListAdapter<T extends IEntity> extends RecyclerView.Adapter<BaseListAdapter.ViewHolder> {
+public class EventsListAdapter<T extends IEntity> extends RecyclerView.Adapter<EventsListAdapter.ViewHolder> {
 
     private List<T> mList;
     private LifecycleOwner mLifecycleOwner;
-    private final BaseListFragment<T> mBaseListFragment;
+    private final EventsListFragment<T> mEventsListFragment;
 
     // ClubListAdapter constructor and methods
     // Initialize this adapter with a reference to the datasource to be used.
-    public BaseListAdapter(List<T> list, BaseListFragment<T> fragment) {
+    public EventsListAdapter(List<T> list, EventsListFragment<T> fragment) {
         mList = list;
-        this.mBaseListFragment = fragment;
+        this.mEventsListFragment = fragment;
     }
 
     // TODO: Investigate using SwitchMap to modify instead of completely replacing the list
@@ -55,16 +62,18 @@ public class BaseListAdapter<T extends IEntity> extends RecyclerView.Adapter<Bas
 
         // Create a new view containing all the views for the UI of the list item
         View view = LayoutInflater.from(parentViewGroup.getContext())
-                .inflate(R.layout.list_view_item, parentViewGroup, false);
+                .inflate(R.layout.list_view_item_events, parentViewGroup, false);
         ViewHolder holder = new ViewHolder(view);
         holder.cardView.setOnClickListener(v -> {
             T item = mList.get(holder.getAdapterPosition());
-            mBaseListFragment.itemClicked(item);
+            mEventsListFragment.itemClicked(item);
+
         });
         return holder;
     }
 
     // Used by the layout manager to change the displayed values in a bound ViewHolder
+    @SuppressLint("RestrictedApi")
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, final int position) {
 
@@ -72,9 +81,16 @@ public class BaseListAdapter<T extends IEntity> extends RecyclerView.Adapter<Bas
         T item = mList.get(position);
         viewHolder.textView.setText(item.getName());
 
+        Map<String, String> Properties = item.getProperties();
+
+
+        viewHolder.locationText.setText(Properties.get("Location"));
+        viewHolder.timeText.setText(dateTimeParse(Properties.get("Date/Time")));
+        //viewHolder.textView.setText(Properties.get("Location"));
+        Log.d(TAG, "This is a debug message" + Properties);
         // get the drawable image as livedata and add an observer
         String imageUri = item.getImageUri();
-        LiveData<Drawable> drawableLiveData = mBaseListFragment.getImage(imageUri);
+        LiveData<Drawable> drawableLiveData = mEventsListFragment.getImage(imageUri);
         drawableLiveData.observe(mLifecycleOwner, viewHolder.imageView::setImageDrawable);
     }
 
@@ -96,6 +112,8 @@ public class BaseListAdapter<T extends IEntity> extends RecyclerView.Adapter<Bas
         public final CardView cardView;
         public final ImageView imageView;
         public final TextView textView;
+        public final TextView locationText;
+        public final TextView timeText;
 
         // The constructor takes a parent view (a layout defined in xml) on the list item fragment
         // and allows us to get references to the views it contains
@@ -105,6 +123,37 @@ public class BaseListAdapter<T extends IEntity> extends RecyclerView.Adapter<Bas
             cardView = parentView.findViewById(R.id.cardview_list_item);
             imageView = parentView.findViewById(R.id.imageview_list_item_image);
             textView = parentView.findViewById(R.id.textView_list_item_text);
+            locationText = parentView.findViewById(R.id.list_view_location_text);
+            timeText = parentView.findViewById(R.id.list_view_time_text);
         }
     }  // End of static ViewHolder class
+    public String dateTimeParse(String DateTime){
+        // Define the regex pattern
+        Pattern pattern = Pattern.compile("(\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2})");
+
+        // Match the pattern against the input date
+        Matcher matcher = pattern.matcher(DateTime);
+
+        // Check if the pattern is found
+        if (matcher.find()) {
+            // Extract date and time components
+            String datePart = matcher.group(1);
+
+
+            // Format the date and time
+            String formattedDate = formatDate(datePart) + " " + formatTime(datePart);
+
+            return formattedDate;
+        } else {
+            return "Invalid date format";
+        }
+    }
+    private String formatDate(String datePart) {
+        // Format the date as MM/dd/yy
+        return datePart.substring(5, 7) + "/" + datePart.substring(8, 10) + "/" + datePart.substring(2, 4);
+    }
+    private String formatTime(String datePart) {
+        // Format the time as HH:mm
+        return datePart.substring(11, 16);
+    }
 }

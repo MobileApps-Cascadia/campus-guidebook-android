@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".ui.events.EventsListFragment" >
+
+<com.google.android.material.card.MaterialCardView
+    android:id="@+id/cardview_list_item"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="20dp"
+    android:clickable="false"
+    app:cardCornerRadius="15dp"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:id="@+id/linearLayout">
+
+        <!-- Media -->
+
+        <ImageView
+            android:id="@+id/imageview_list_item_image"
+            android:layout_width="132dp"
+            android:layout_height="132dp"
+            android:contentDescription="@string/image_club_banner"
+            android:scaleType="fitCenter"
+            android:src="@drawable/default_image"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_conversion_absoluteHeight="132dp"
+            tools:layout_conversion_absoluteWidth="132dp" />
+
+        <TextView
+            android:id="@+id/textView_list_item_text"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="28dp"
+            android:gravity="center"
+            android:background="@drawable/box"
+            android:text="CLUB FOR STUDENTS OF CASCADIA"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:typeface="sans"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/imageview_list_item_image"
+            app:layout_constraintTop_toBottomOf="@+id/list_view_time_text"
+            app:layout_constraintVertical_bias="0.0"
+            tools:layout_conversion_absoluteHeight="26dp"
+            tools:layout_conversion_absoluteWidth="350dp" />
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="20dp"
+            android:layout_height="19dp"
+            android:src="@drawable/map_pin__1_"
+            app:layout_constraintBottom_toTopOf="@+id/textView_list_item_text"
+            app:layout_constraintEnd_toStartOf="@+id/list_view_location_text"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/list_view_time_text"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.142" />
+
+        <TextView
+            android:id="@+id/list_view_time_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:layout_marginTop="6dp"
+            android:text="TextView"
+            app:layout_constraintStart_toEndOf="@+id/imageview_list_item_image"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/list_view_location_text"
+            android:layout_width="77dp"
+            android:layout_height="18dp"
+            android:layout_marginTop="6dp"
+            android:text="TextView"
+            app:layout_constraintBottom_toTopOf="@+id/textView_list_item_text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.836"
+            app:layout_constraintStart_toEndOf="@+id/list_view_time_text"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>
+</LinearLayout>

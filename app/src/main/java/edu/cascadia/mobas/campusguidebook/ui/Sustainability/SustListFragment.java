@@ -7,17 +7,17 @@ import java.util.List;
 
 import edu.cascadia.mobas.campusguidebook.R;
 import edu.cascadia.mobas.campusguidebook.data.model.Sustainability;
-import edu.cascadia.mobas.campusguidebook.ui.BaseListFragment;
 
 
-public class SustListFragment extends BaseListFragment<Sustainability> {
+
+public class SustListFragment extends SustsListFragment<Sustainability> {
     @Override
     public LiveData<List<Sustainability>> getList() {
         return getViewModel().getAllSustainability();
     }
 
     @Override
-    protected void itemClicked(Sustainability item) {
+    public void itemClicked(Sustainability item) {
         getViewModel().setDetailsItem(item);
         Navigation.findNavController(getRootView()).navigate(R.id.nav_sust_details);
     }

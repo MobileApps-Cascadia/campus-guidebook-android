@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.BaseListFragment" >
+    tools:context=".ui.events.EventsListFragment" >
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -34,9 +34,29 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/list_recycler"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/Title1"
+            android:layout_marginTop="11dp">
 
         </androidx.recyclerview.widget.RecyclerView>
+
+        <TextView
+            android:id="@+id/Title1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginEnd="0dp"
+            android:text="EVENTS AT CASCADIA"
+            android:textAlignment="center"
+            android:textColor="#012F6C"
+            android:textColorHighlight="#012F6C"
+            android:textColorHint="#012F6C"
+            android:textSize="24sp"
+            android:textStyle="bold" />
 
     </RelativeLayout>
 

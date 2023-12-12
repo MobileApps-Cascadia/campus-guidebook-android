@@ -1,23 +1,16 @@
-package edu.cascadia.mobas.campusguidebook.ui;
-
-import androidx.annotation.NonNull;
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModelProvider;
+package edu.cascadia.mobas.campusguidebook.ui.Sustainability;
 
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import edu.cascadia.mobas.campusguidebook.R;
-import edu.cascadia.mobas.campusguidebook.data.model.IEntity;
-import edu.cascadia.mobas.campusguidebook.viewmodel.MainActivityViewModel;
-
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -25,9 +18,14 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
 
+import edu.cascadia.mobas.campusguidebook.R;
+import edu.cascadia.mobas.campusguidebook.data.model.IEntity;
+import edu.cascadia.mobas.campusguidebook.ui.Sustainability.SustsListAdapter;
+import edu.cascadia.mobas.campusguidebook.viewmodel.MainActivityViewModel;
+
 // ListFragment
 // Base class for displaying a recyclerview for the provided type
-public abstract class BaseListFragment<T extends IEntity> extends Fragment {
+public abstract class SustsListFragment<T extends IEntity> extends Fragment {
 
     protected String TAG = "ListFragment";
     private MainActivityViewModel mViewModel;
@@ -37,7 +35,7 @@ public abstract class BaseListFragment<T extends IEntity> extends Fragment {
 
     protected abstract LiveData<List<T>> getList();
 
-    protected abstract void itemClicked(T item);
+    public abstract void itemClicked(T item);
 
     protected void onClickFloatingActionButton() {
 
@@ -65,14 +63,14 @@ public abstract class BaseListFragment<T extends IEntity> extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View viewRoot = inflater.inflate(R.layout.list_view, container, false);
+        View viewRoot = inflater.inflate(R.layout.list_view_sust, container, false);
         viewRoot.setTag(TAG);
 
         // RecyclerView setup
         RecyclerView recyclerView = viewRoot.findViewById(R.id.list_recycler);
         recyclerView.setLayoutManager(new LinearLayoutManager(
                 getActivity(), LinearLayoutManager.VERTICAL, false));
-        BaseListAdapter<T> adapter = new BaseListAdapter<T>(mList.getValue(), this);
+        SustsListAdapter<T> adapter = new SustsListAdapter<T>(mList.getValue(), this);
         recyclerView.setAdapter(adapter);
 
         // get floatingActionButton

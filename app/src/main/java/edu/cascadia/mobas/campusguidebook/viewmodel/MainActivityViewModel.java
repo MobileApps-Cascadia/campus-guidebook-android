@@ -17,6 +17,7 @@ import edu.cascadia.mobas.campusguidebook.CampusGuidebookApp;
 import edu.cascadia.mobas.campusguidebook.data.model.Club;
 import edu.cascadia.mobas.campusguidebook.data.model.Event;
 import edu.cascadia.mobas.campusguidebook.data.model.IEntity;
+import edu.cascadia.mobas.campusguidebook.data.model.Location;
 import edu.cascadia.mobas.campusguidebook.data.model.Sustainability;
 import edu.cascadia.mobas.campusguidebook.data.repository.AppRepository;
 import edu.cascadia.mobas.campusguidebook.data.repository.ImageRepository;
@@ -60,6 +61,9 @@ public class MainActivityViewModel extends AndroidViewModel {
 
     public LiveData<List<Sustainability>> getAllSustainability() {
         return mAppRepository.getAllSustainability();
+    }
+    public List<Location> getAllLocations() {
+        return mAppRepository.getAllLocations();
     }
 
     public LiveData<Drawable> getImageFromUri(String uri) {
